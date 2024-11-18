@@ -1,0 +1,56 @@
+/* src/pages/user/About.css */
+
+.about-one {
+  background-color: var(--light-3);
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.about-title {
+  font-size: 2rem; /* Ukuran font untuk judul */
+  color: black; /* Warna untuk judul menjadi hitam */
+}
+
+.about-description {
+  font-size: 1.25rem; /* Ukuran font untuk deskripsi */
+  color: black; /* Warna untuk deskripsi menjadi hitam */
+  margin-top: 10px; /* Jarak atas untuk deskripsi */
+}
+
+.single-about-items {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: var(--shadow-2);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.single-about-items:hover {
+  box-shadow: var(--shadow-4);
+}
+
+.items-icon {
+  margin-bottom: 15px;
+}
+
+.items-image {
+  max-width: 30%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: var(--shadow-1);
+}
+
+.items-title {
+  font-weight: 600;
+  color: var(--black);
+  margin-top: 15px;
+}
+
+.text {
+  color: var(--dark-3);
+  font-size: 14px;
+  line-height: 1.8;
+  margin-top: 10px;
+}

@@ -1,0 +1,46 @@
+/* ===== Buttons Css ===== */
+.call-action-one .call-action-content .call-action-btn .primary-btn {
+    background: var(--primary);
+    color: var(--white);
+    box-shadow: var(--shadow-2);
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+  }
+  
+  .call-action-one .call-action-content .call-action-btn .primary-btn:hover, 
+  .call-action-one .call-action-content .call-action-btn .primary-btn:focus {
+    background: var(--primary-dark);
+    color: var(--white);
+    box-shadow: var(--shadow-4);
+  }
+  
+  .call-action-one {
+    background-color: var(--light-2);
+    padding-top: 50px;
+    padding-bottom: 100px;
+  }
+  
+  .call-action-one .call-action-content .call-action-text {
+    margin-top: 50px;
+  }
+  
+  .call-action-one .call-action-content .call-action-text .action-title {
+    font-weight: 600;
+    color: var(--black);
+    font-size: 2rem;
+  }
+  
+  .call-action-one .call-action-content .call-action-text .text-lg {
+    color: var(--dark-3);
+    margin-top: 16px;
+    font-size: 1rem;
+  }
+  
+  .call-action-one .call-action-content .call-action-btn {
+    margin-top: 50px;
+    text-align: right;
+  }
+  

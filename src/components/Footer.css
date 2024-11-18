@@ -1,0 +1,101 @@
+.footer-area {
+  background-color: #f8f9fa;
+  padding: 60px 0;
+  border-top: 1px solid #e9ecef;
+  color: #343a40;
+}
+
+.f-about {
+  padding: 20px; /* Padding untuk memberikan ruang di sekitar */
+  text-align: center; /* Rata tengah teks */
+}
+
+.footer-logo {
+  margin-bottom: 10px; /* Jarak bawah untuk memisahkan logo dari teks */
+}
+
+.logo-img {
+  width: 50px; /* Atur ukuran gambar logo sesuai kebutuhan */
+  height: auto; /* Pertahankan rasio aspek */
+}
+
+.logo-text {
+  font-size: 18px; /* Ukuran teks */
+  font-weight: bold; /* Menebalkan teks */
+  color: #343a40; /* Warna teks, bisa disesuaikan */
+  margin-left: 10px; /* Jarak antara gambar dan teks */
+}
+
+.footer-widget .f-about p {
+  margin-top: 20px; /* Menambah jarak antara teks dan logo */
+}
+
+.footer-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #343a40;
+}
+
+
+
+.footer-link ul li a {
+  color: #6c757d;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-contact ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-contact ul li {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 24px;
+  color: #6c757d;
+  margin-bottom: 10px; /* Menambah jarak antar item */
+}
+
+.footer-contact ul li i {
+  font-size: 18px; /* Ukuran ikon */
+  margin-right: 10px; /* Jarak antara ikon dan teks */
+  color: #007bff; /* Warna ikon, bisa diubah sesuai kebutuhan */
+}
+
+
+.footer-widget .row > div {
+  margin-bottom: 30px;
+}
+
+.footer-widget .container {
+  max-width: 1200px;
+}
+
+@media (max-width: 768px) {
+  .footer-widget .f-about {
+    text-align: center;
+  }
+
+  .footer-widget .footer-link,
+  .footer-widget .footer-contact {
+    text-align: center;
+  }
+  
+  .footer-logo img {
+    margin: 0 auto 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-title {
+    font-size: 16px;
+  }
+  
+  .footer-contact ul li {
+    font-size: 13px;
+  }
+}

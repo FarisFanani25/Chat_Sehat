@@ -1,0 +1,70 @@
+/* src/components/Chatbot.css */
+
+.chatbot-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Mengatur tinggi agar memenuhi layar */
+    border: 1px solid #ccc; /* Garis batas */
+    background-color: #f9f9f9; /* Warna latar belakang */
+}
+
+.chatbot-header {
+    background-color: #007bff; /* Warna latar belakang header */
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.chatbot-messages {
+    flex: 1; /* Mengisi ruang tersisa */
+    padding: 10px;
+    overflow-y: auto; /* Scroll jika pesan melebihi tinggi */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Jarak antar pesan */
+}
+
+.message {
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 75%; /* Batas maksimal lebar pesan */
+}
+
+.message.user {
+    align-self: flex-end; /* Pesan pengguna berada di sebelah kanan */
+    background-color: #007bff; /* Warna pesan pengguna */
+    color: white; /* Warna teks pesan pengguna */
+}
+
+.message.bot {
+    align-self: flex-start; /* Pesan bot berada di sebelah kiri */
+    background-color: #e9ecef; /* Warna pesan bot */
+}
+
+.chatbot-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc; /* Garis batas atas */
+}
+
+.chatbot-input input {
+    flex: 1; /* Mengisi ruang tersisa */
+    padding: 10px;
+    border: 1px solid #ccc; /* Garis batas input */
+    border-radius: 5px; /* Sudut melengkung */
+}
+
+.chatbot-input button {
+    margin-left: 10px;
+    background-color: #007bff; /* Warna latar belakang tombol */
+    color: white; /* Warna teks tombol */
+    border: none; /* Menghapus batas */
+    border-radius: 5px; /* Sudut melengkung tombol */
+    padding: 10px 15px; /* Padding tombol */
+    cursor: pointer; /* Menunjukkan bahwa tombol bisa diklik */
+    transition: background-color 0.3s; /* Efek transisi */
+}
+
+.chatbot-input button:hover {
+    background-color: #0056b3; /* Warna saat tombol di-hover */
+}

@@ -1,0 +1,87 @@
+/* src/styles/Dashboard.css */
+
+/* Mengatur wrapper untuk Dashboard */
+.dashboard-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Mengisi tinggi layar penuh */
+  background-color: #f8f9fa; /* Warna latar belakang halaman */
+}
+
+/* Mengatur container agar lebih lebar */
+.container-fluid {
+  width: 100%;
+  padding: 0 15px; /* Memberikan padding agar tidak terlalu mepet ke tepi */
+  margin-top: 20px;
+}
+
+/* Mengatur konten dashboard */
+.dashboard-content {
+  flex-grow: 1; /* Memungkinkan bagian konten untuk berkembang */
+  padding: 30px; /* Memberikan padding di dalam konten */
+  background-color: #ffffff; /* Warna latar belakang konten */
+  border-radius: 8px; /* Sudut melengkung */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Bayangan untuk efek kedalaman */
+}
+
+.read-more {
+  color: #007bff; /* Warna biru untuk tautan */
+  cursor: pointer; /* Menunjukkan bahwa ini bisa diklik */
+  text-decoration: underline; /* Garis bawah untuk menekankan */
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.col-md-6 {
+  flex: 1;
+}
+
+h2 {
+  font-size: 1.8rem; /* Ukuran font yang lebih besar untuk subjudul */
+  margin-bottom: 15px;
+  color: #007bff; /* Warna biru untuk subjudul */
+}
+
+img {
+  max-width: 100%;
+  border-radius: 8px; /* Sudut melengkung untuk gambar */
+}
+
+button {
+  margin-top: 20px;
+  background-color: #007bff; /* Warna tombol */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transisi untuk efek hover */
+}
+
+button:hover {
+  background-color: #0056b3; /* Warna saat hover */
+  transform: scale(1.05); /* Efek zoom saat hover */
+}
+
+/* Media Queries untuk Responsivitas */
+@media (max-width: 768px) {
+  .dashboard-content {
+    padding: 20px; /* Padding lebih kecil di perangkat kecil */
+  }
+
+  h1 {
+    font-size: 2rem; /* Ukuran font lebih kecil di perangkat kecil */
+  }
+
+  h2 {
+    font-size: 1.5rem; /* Ukuran font lebih kecil untuk subjudul */
+  }
+
+  button {
+    width: 100%; /* Tombol penuh lebar pada perangkat kecil */
+  }
+}

@@ -1,0 +1,79 @@
+.blog-style-one {
+  margin-top: 30px;
+}
+
+.blog-style-one .blog-image {
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+  position: relative;
+  height: 200px; /* Atur tinggi yang konsisten */
+}
+
+.blog-style-one .blog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Menjaga gambar tetap proporsional */
+  transition: transform 0.3s ease-out;
+}
+
+.blog-style-one .blog-image:hover img {
+  transform: scale(1.05);
+}
+
+.blog-style-one .category {
+  background-color: var(--primary);
+  color: var(--white);
+  font-size: 13px;
+  padding: 5px 15px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  border-radius: 20px;
+}
+
+.blog-style-one .blog-content {
+  padding: 20px;
+  border: 1px solid var(--light-1);
+  border-radius: 0 0 8px 8px;
+  border-top: none;
+  background: #fff;
+}
+
+.blog-style-one .blog-title a {
+  font-weight: 600;
+  color: var(--black);
+  transition: color 0.3s ease;
+  line-height: 1.4;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.blog-style-one .blog-title a:hover {
+  color: var(--primary);
+}
+
+.blog-style-one .blog-content span {
+  font-size: 13px;
+  color: var(--dark-3);
+  margin-right: 10px;
+}
+
+.blog-style-one .blog-content .text {
+  font-size: 14px;
+  color: var(--dark-3);
+  margin-top: 10px;
+  height: 50px; /* Membatasi tinggi teks untuk konsistensi */
+  overflow: hidden;
+}
+
+.blog-style-one .blog-content .more {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: 15px;
+  display: inline-block;
+}
+
+.blog-style-one .blog-content .more:hover {
+  color: var(--primary-dark);
+}

@@ -1,0 +1,54 @@
+
+
+.services {
+  background-color: var(--light-3);
+  padding: 60px 20px; /* Padding atas-bawah dan samping */
+  text-align: center;
+}
+
+.services-title {
+  font-size: 2rem; /* Ukuran font untuk judul layanan */
+  color: black; /* Warna untuk judul menjadi hitam */
+  margin-bottom: 30px; /* Jarak bawah untuk judul */
+  font-weight: bold; /* Menebalkan judul */
+}
+
+.services-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px; /* Jarak antar item layanan */
+  justify-content: center;
+}
+
+.service-item {
+  background: var(--white);
+  padding: 30px; /* Padding lebih untuk item layanan */
+  border-radius: 10px;
+  box-shadow: var(--shadow-2);
+  max-width: 300px;
+  text-align: center;
+  transition: box-shadow 0.3s ease; /* Transisi untuk efek hover */
+}
+
+.service-item:hover {
+  box-shadow: var(--shadow-4); /* Efek saat hover */
+}
+
+.service-item i {
+  font-size: 3rem; /* Ukuran ikon yang lebih besar */
+  color: #007bff; /* Warna ikon */
+  margin-bottom: 15px; /* Jarak bawah untuk ikon */
+}
+
+.service-item h3 {
+  font-size: 1.5rem; /* Ukuran font untuk judul layanan */
+  color: black; /* Warna untuk judul layanan */
+  margin: 15px 0; /* Jarak atas dan bawah untuk judul layanan */
+}
+
+.service-item p {
+  font-size: 1rem; /* Ukuran font untuk deskripsi */
+  color: #666; /* Warna untuk deskripsi */
+  line-height: 1.6; /* Jarak antar baris untuk deskripsi */
+  margin-top: 10px; /* Jarak atas untuk deskripsi */
+}

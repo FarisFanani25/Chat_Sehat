@@ -1,0 +1,75 @@
+/* ===== Header CSS ===== */
+.header-one {
+  position: relative;
+}
+.header-one .header-content-area {
+  background-color: var(--primary);
+  position: relative;
+  padding: 130px 0;
+}
+.header-one .header-content {
+  max-width: 540px;
+  position: relative;
+  z-index: 5;
+}
+.header-one .header-title {
+  color: var(--white);
+  font-weight: 800;
+}
+.header-one .text-lg {
+  color: var(--white);
+  font-weight: 300;
+  margin-top: 16px;
+}
+.header-one .header-btn {
+  margin-top: 40px;
+}
+.header-one .header-image .image {
+  max-width: 730px;
+}
+.header-one .header-image .image img {
+  width: 100%;
+}
+.header-one .header-shape {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+.header-one .header-shape img {
+  width: 100%;
+}
+
+.header-area {
+  background-color: #f8f9fa; /* Contoh warna latar belakang */
+  /* padding: 50px 0; Contoh padding */
+}
+
+.header-title {
+  color: #333; /* Warna teks untuk judul */
+  font-size: 2.5rem; /* Ukuran font */
+}
+
+.header-content-area {
+  text-align: left; /* Mengatur teks agar rata kiri */
+}
+
+.header-btn {
+  margin-top: 20px; /* Jarak atas untuk tombol */
+}
+
+.primary-btn-outline {
+  border: 2px solid #e4eaf0; /* Contoh border tombol */
+  color: #e4eaf0; /* Warna teks tombol */
+}
+
+.header-image img {
+  max-width: 75%; /* Mengatur gambar agar responsif */
+}
+
+.header-shape img {
+  width: 100%; /* Gambar bentuk agar responsif */
+}
+
+
