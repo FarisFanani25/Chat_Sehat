@@ -1,26 +1,57 @@
-// src/components/Chatbot.js
-import React, { useState } from 'react';
-import './Chatbot.css'; // Import file CSS untuk Chatbot
+import React, { useState } from "react";
+import axios from "axios";
+import "./Chatbot.css";
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
 
-  const handleSendMessage = () => {
-    if (input.trim() === '') return;
+  const dialogflowEndpoint = "https://<your-region>-<your-project-id>.cloudfunctions.net/dialogflowFirebaseFulfillment"; // Ganti dengan endpoint yang benar
 
-    // Menambahkan pesan pengguna ke dalam state
-    setMessages([...messages, { text: input, sender: 'user' }]);
+  const handleSendMessage = async () => {
+    if (input.trim() === "") return;
 
-    // Simulasi respons dari chatbot
-    setTimeout(() => {
-      setMessages(prevMessages => [
+    // Tambahkan pesan pengguna ke dalam state
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { text: input, sender: "user", timestamp: new Date().toLocaleTimeString() },
+    ]);
+
+    try {
+      // Kirim pesan ke endpoint Dialogflow
+      const response = await axios.post(dialogflowEndpoint, {
+        queryInput: {
+          text: {
+            text: input,
+            languageCode: "id", // Ganti dengan kode bahasa yang sesuai
+          },
+        },
+        session: `projects/<your-project-id>/agent/sessions/unique-session-id`, // Gunakan session yang unik
+      });
+
+      // Respons dari Dialogflow
+      const botResponse = response.data.fulfillmentMessages[0]?.text?.text[0];
+      setMessages((prevMessages) => [
         ...prevMessages,
-        { text: 'Terima kasih! Saya akan membantu Anda.', sender: 'bot' }
+        {
+          text: botResponse || "Maaf, saya tidak memahami pesan Anda.",
+          sender: "bot",
+          timestamp: new Date().toLocaleTimeString(),
+        },
       ]);
-    }, 1000);
+    } catch (error) {
+      console.error("Error communicating with Dialogflow:", error);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          text: "Terjadi kesalahan, coba lagi nanti.",
+          sender: "bot",
+          timestamp: new Date().toLocaleTimeString(),
+        },
+      ]);
+    }
 
-    setInput(''); // Mengosongkan input setelah mengirim
+    setInput(""); // Kosongkan input setelah pengiriman
   };
 
   return (
@@ -31,7 +62,9 @@ const Chatbot = () => {
       <div className="chatbot-messages">
         {messages.map((msg, index) => (
           <div key={index} className={`message ${msg.sender}`}>
-            {msg.text}
+            {/* Menghapus elemen avatar */}
+            <p>{msg.text}</p>
+            <span className="timestamp">{msg.timestamp}</span>
           </div>
         ))}
       </div>

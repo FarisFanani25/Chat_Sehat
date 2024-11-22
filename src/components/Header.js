@@ -1,10 +1,17 @@
-// src/components/HeaderWithNavbar.js
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import '../components/Header.css';
 import headerImage from '../Asset/LogoHeader.png'; // Pastikan path ini sesuai
+import Chatbot from '../pages/user/Chatbot'; // Import komponen Chatbot
+import ChatbotIframe from '../pages/user/ChatbotComponen'; // Import komponen chatbot iframe
 
 const HeaderUser = () => {
+  const [isChatbotVisible, setIsChatbotVisible] = useState(false);
+
+  const handleChatbotToggle = () => {
+    setIsChatbotVisible(!isChatbotVisible); // Menyalakan/mematikan pop-up chatbot
+  };
+
   return (
     <>
       {/* Header Section */}
@@ -22,9 +29,9 @@ const HeaderUser = () => {
                       Bergabunglah dengan kami dalam upaya meningkatkan kesadaran dan memberikan dukungan bagi individu yang terpengaruh oleh penyalahgunaan narkotika dan alkohol. Temukan informasi yang Anda butuhkan dan dapatkan bantuan dengan mudah melalui chatbot kami yang siap 24/7.
                     </p>
                     <div className="header-btn rounded-buttons">
-                      <a className="btn primary-btn-outline btn-lg" href="/chatbot">
+                      <button className="btn primary-btn-outline btn-lg" onClick={handleChatbotToggle}>
                         LANJUT CHAT
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -49,6 +56,18 @@ const HeaderUser = () => {
           </div>
         </div>
       </section>
+
+      {/* Chatbot Pop-up */}
+      {isChatbotVisible && (
+        <div className="chatbot-popup">
+          {/* Menampilkan Chatbot atau Iframe tergantung kebutuhan */}
+          {/* Gunakan ChatbotIframe untuk chatbot berbasis iframe */}
+          <ChatbotIframe /> 
+          {/* Atau jika Anda lebih suka menampilkan Chatbot secara langsung */}
+          {/* <Chatbot /> */}
+          <button className="close-chatbot" onClick={handleChatbotToggle}>X</button> {/* Tombol untuk menutup chatbot */}
+        </div>
+      )}
     </>
   );
 };
