@@ -1,0 +1,125 @@
+/* ===== Buttons CSS ===== */
+.signin-one .rounded-buttons .primary-btn {
+    background: var(--primary);
+    color: var(--white);
+    box-shadow: var(--shadow-2);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  .signin-one .rounded-buttons .primary-btn:hover,
+  .signin-one .rounded-buttons .primary-btn:focus {
+    background: var(--primary-dark);
+    color: var(--white);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Alternatif shadow */
+  }
+  
+  .signin-one .rounded-buttons .primary-btn-outline {
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    background: transparent;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .signin-one .rounded-buttons .primary-btn-outline:hover,
+  .signin-one .rounded-buttons .primary-btn-outline:focus {
+    background: var(--primary);
+    color: var(--white);
+  }
+  
+  /* ===== Sign-In / Sign-Up CSS ===== */
+  .signin-one {
+    padding: 100px 20px; /* Menggunakan padding yang sama untuk atas & bawah */
+    background-color: var(--gray-4);
+  }
+  .signin-one .form-input {
+    margin-top: 16px;
+  }
+  .signin-one .form-input label {
+    font-size: 14px; /* Sedikit lebih besar untuk visibilitas */
+    line-height: 18px;
+    color: var(--dark-3);
+    margin-bottom: 8px;
+    display: inline-block;
+  }
+  .signin-one .form-input .input-items {
+    position: relative;
+  }
+  .signin-one .form-input .input-items input {
+    width: 100%;
+    height: 44px;
+    border: 2px solid var(--gray-4);
+    padding: 0 12px 0 44px; /* Padding horizontal dengan ikon */
+    font-size: 16px;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+  }
+  .signin-one .form-input .input-items input:focus {
+    border-color: var(--primary);
+  }
+  .signin-one .form-input .input-items input::placeholder {
+    color: var(--dark-3);
+    opacity: 0.7;
+  }
+  .signin-one .form-input .input-items i {
+    position: absolute;
+    top: 50%;
+    left: 13px;
+    font-size: 20px;
+    color: var(--dark-3);
+    transform: translateY(-50%);
+  }
+  
+  /* ===== Form Container Styling ===== */
+  .signin-one .signin-form {
+    background-color: var(--white);
+    padding: 40px 30px; /* Menambahkan padding horizontal */
+    border: 1px solid var(--gray-4);
+    border-radius: 8px;
+    box-shadow: var(--shadow-2);
+  }
+  .signin-one .rounded-buttons {
+    margin-top: 20px;
+  }
+  .signin-one .rounded-buttons .primary-btn,
+  .signin-one .rounded-buttons .primary-btn-outline {
+    width: 100%; /* Tombol full width */
+  }
+  .signin-one .form-input .text {
+    font-size: 14px; /* Ukuran yang lebih kecil untuk teks informasi */
+    line-height: 22px;
+    color: var(--dark-3);
+    margin-top: 16px;
+    text-align: center;
+  }
+  .signin-one .form-input .text a {
+    color: var(--primary);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+  }
+  .signin-one .form-input .text a:hover {
+    color: var(--primary-dark);
+  }
+
+  .form-logo {
+    margin-bottom: -20px;
+  }
+  
+  /* Menata container logo */
+.logo-container {
+    display: flex;
+    align-items: center; /* Untuk memastikan logo dan nama sejajar secara vertikal */
+    justify-content: center; /* Agar semua item di dalamnya terpusat */
+  }
+  
+  /* Gambar logo */
+  .form-logo-image {
+    width: 70px; /* Ukuran gambar logo */
+    height: auto; /* Agar proporsi gambar tetap terjaga */
+    margin-right: -10px; /* Jarak antara gambar dan nama */
+  }
+  
+  /* Nama logo */
+  .logo-name {
+    font-size: 20px; /* Ukuran teks */
+    font-weight: bold; /* Menebalkan teks */
+    color: #333; /* Warna teks */
+  }
+  

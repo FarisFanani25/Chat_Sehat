@@ -1,0 +1,132 @@
+/* Dashboard Layout */
+.container-fluid {
+    padding: 0;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    height: calc(100vh - 56px); /* Mengurangi tinggi sidebar dengan tinggi navbar */
+    position: fixed;
+    top: 82px; /* Menyesuaikan posisi top untuk menghindari tumpang tindih dengan navbar */
+    left: 0;
+    width: 250px;
+    background-color: #faf9f8;
+    padding-top: 20px;
+    z-index: 1000; /* Pastikan sidebar berada di depan */
+  }
+  
+  
+  .sidebar .nav-link {
+    font-size: 16px;
+    color: #495057;
+  }
+  
+  .sidebar .nav-link:hover {
+    background-color: hsl(211, 100%, 50%);
+    color: white;
+  }
+  
+  .sidebar .nav-item + .nav-item {
+    margin-top: 10px;
+  }
+  
+  /* Main Content */
+  .main-content {
+    margin-left: 250px;
+    margin-top: 56px; /* Menambahkan margin atas untuk menghindari tumpang tindih dengan navbar */
+  }
+  
+  
+  .card {
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-body p {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .card-header {
+    font-size: 20px;
+    font-weight: 600;
+    background-color: #f1f1f1;
+  }
+  
+  .card-body ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .card-body ul li {
+    padding: 5px 0;
+    font-size: 16px;
+  }
+
+  /* Kartu dengan warna yang berbeda */
+.bg-primary {
+    background-color: #007bff !important; /* Biru */
+    color: white; /* Warna teks */
+}
+
+.bg-success {
+    background-color: #007bff !important; /* Biru */
+    color: white; /* Warna teks */
+}
+
+.bg-danger {
+    background-color: #007bff !important; /* Biru */
+    color: white; /* Warna teks */
+}
+
+.bg-warning {
+    background-color: #007bff !important; /* Biru */    
+    color: black; /* Warna teks */
+}
+  
+  /* Navbar */
+  .navbar {
+    background-color: #343a40;
+  }
+  
+  .navbar .navbar-brand {
+    color: white;
+    font-size: 24px;
+  }
+  
+  .navbar .navbar-toggler-icon {
+    background-color: white;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .sidebar {
+      position: static;
+      width: 100%;
+      height: auto; /* Mengatur tinggi sidebar ke auto untuk layar kecil */
+      padding-top: 0; /* Menghilangkan padding atas untuk tampilan lebih baik */
+    }
+  
+    .main-content {
+      margin-left: 0;
+      margin-top: 0; /* Menghilangkan margin atas untuk tampilan lebih baik */
+    }
+  
+    .sidebar .nav-link {
+      text-align: center;
+    }
+  
+    .card-body p {
+      font-size: 20px;
+    }
+  }
+  

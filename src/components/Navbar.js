@@ -49,7 +49,7 @@ function Navbar() {
                   </li>
                 </ul>
                 <div className="navbar-btn">
-                  <a className="btn primary-btn" href="#">
+                  <a className="btn primary-btn" href="/login">
                     Sign In
                   </a>
                 </div>
