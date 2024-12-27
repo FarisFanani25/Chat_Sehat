@@ -1,50 +1,39 @@
-.articles-list-container {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.table {
+  font-size: 14px;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+/* Styling Sidebar */
+.sidebar {
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.sidebar .nav-link {
+  color: #212529;
+}
+
+/* .sidebar .nav-link.active {
+  font-weight: bold;
+  color: #007bff;
+} */
+
+/* Alert Styling */
+.alert {
+  margin-bottom: 20px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .sidebar {
+    padding: 15px;
   }
-  
-  .articles-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .articles-table th, .articles-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .articles-table th {
-    background-color: #f4f4f4;
-  }
-  
-  .view-button, .delete-button {
-    padding: 5px 10px;
-    margin-right: 5px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .view-button {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .view-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .delete-button {
-    background-color: #dc3545;
-    color: white;
-  }
-  
-  .delete-button:hover {
-    background-color: #c82333;
-  }
-  
+}

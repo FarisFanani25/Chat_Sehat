@@ -15,7 +15,7 @@ const NavbarAdmin = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/dashboard">Dashboard</Link>
+              <Link className="nav-link" to="/DashboardAdmind">Dashboard</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/manage-users">Daftar User</Link>

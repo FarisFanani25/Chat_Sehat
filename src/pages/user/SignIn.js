@@ -36,7 +36,7 @@ const SignIn = () => {
       }).then(() => {
         // Arahkan ke halaman sesuai role
         if (user.role === "admin") {
-          navigate("/admin");
+          navigate("/DashboardAdmin");
         } else {
           navigate("/");
         }

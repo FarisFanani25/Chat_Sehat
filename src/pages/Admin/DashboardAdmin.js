@@ -61,7 +61,7 @@ const DashboardAdmin = () => {
             <div className="sidebar-sticky">
               <ul className="nav flex-column">
                 <li className="nav-item">
-                  <Link className="nav-link active" to="/dashboard">
+                  <Link className="nav-link active" to="/DashboardAdmin">
                     Dashboard
                   </Link>
                 </li>
@@ -71,7 +71,7 @@ const DashboardAdmin = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/orders">
+                  <Link className="nav-link" to="/Artikel">
                     Artikel
                   </Link>
                 </li>

@@ -11,7 +11,7 @@ import BlogDetail from './pages/user/BlogDetail';
 import SignIn from './pages/user/SignIn';
 import Register from './pages/user/Register';
 import DashboardAdmin from './pages/Admin/DashboardAdmin';
-import Artikel from './pages/Admin/Add_artikel';
+import Artikel from './pages/Admin/ArtikelList';
 
 function App() {
   return (
