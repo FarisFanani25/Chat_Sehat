@@ -12,6 +12,8 @@ import SignIn from './pages/user/SignIn';
 import Register from './pages/user/Register';
 import DashboardAdmin from './pages/Admin/DashboardAdmin';
 import Artikel from './pages/Admin/ArtikelList';
+import UserTable from './pages/Admin/UserTable';
+import VerifyToken from './pages/user/VerifyToken';
 
 function App() {
   return (
@@ -25,9 +27,11 @@ function App() {
         <Route path="/Contact" element={<Contact />} />
         <Route path="/DetailPage" element={<DetailPage />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/verify-token" element={<VerifyToken />} />
         
-        //Admin
+        {/*Admin*/}
         <Route path="/DashboardAdmin" element={<DashboardAdmin />} />
+        <Route path="/Usertabel" element={<UserTable />} />
         <Route path="/Artikel" element={<Artikel />} />
 
       </Routes>

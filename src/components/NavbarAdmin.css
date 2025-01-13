@@ -1,62 +1,53 @@
-/* Navbar */
-.navbar {
-    background-color: #007bff !important; /* Dark background */
-    position: fixed; /* Membuat navbar tetap di atas */
-    top: 0; /* Menetapkan posisi atas */
-    left: 0; /* Menetapkan posisi kiri */
-    right: 0; /* Menetapkan posisi kanan */
-    z-index: 1000; /* Pastikan navbar berada di depan */
-  }
-  
-  .navbar .navbar-brand {
-    color: white !important;
-    font-size: 24px;
-    font-weight: 500;
-  }
-  
-  .navbar .navbar-toggler-icon {
-    background-color: white;
-  }
-  
-/* Mengatur konten utama agar tidak tertutup navbar */
-.main-content {
-    margin-top: 56px; /* Sesuaikan dengan tinggi navbar */
+/* ===== Styling untuk Navbar Admin ===== */
+.navbar-admin {
+  background-color: #007bff !important; /* Warna gelap */
+  position: fixed; /* Navbar tetap di atas */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Agar di atas elemen lain */
+}
+
+.navbar-admin .navbar-brand {
+  color: white !important;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.navbar-admin .navbar-toggler-icon {
+  background-color: white;
+}
+
+.navbar-admin .navbar-nav .nav-link {
+  color: white !important;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 8px 16px;
+}
+
+.navbar-admin .navbar-nav .nav-link:hover {
+  color: #f8f9fa !important; /* Warna hover putih terang */
+  background-color: #495057; /* Background hover abu-abu gelap */
+  border-radius: 5px;
+}
+
+.navbar-admin .navbar-nav .nav-link.active {
+  background-color: #495057;
+  color: #ffffff !important;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .navbar-admin .navbar-nav {
+    text-align: center;
   }
 
-  /* Styling untuk item navigasi */
-  .navbar-nav .nav-link {
-    color: white !important;
-    font-size: 16px;
-    font-weight: 400;
-    padding: 8px 16px;
+  .navbar-admin .navbar-brand {
+    font-size: 20px;
   }
-  
-  .navbar-nav .nav-link:hover {
-    color: #007bff !important; /* Warna hover biru */
-    background-color: #ffffff;
-    border-radius: 5px;
+
+  .navbar-admin .navbar-nav .nav-link {
+    padding: 10px;
+    font-size: 18px;
   }
-  
-  /* Styling untuk active nav-link */
-  .navbar-nav .nav-link.active {
-    background-color: #007bff;
-    color: white !important;
-    border-radius: 5px;
-  }
-  
-  /* Responsif untuk layar kecil */
-  @media (max-width: 768px) {
-    .navbar-nav {
-      text-align: center;
-    }
-  
-    .navbar .navbar-brand {
-      font-size: 20px;
-    }
-  
-    .navbar-nav .nav-link {
-      padding: 10px;
-      font-size: 18px;
-    }
-  }
-  
+}

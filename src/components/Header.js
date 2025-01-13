@@ -4,12 +4,30 @@ import '../components/Header.css';
 import headerImage from '../Asset/LogoHeader.png'; // Pastikan path ini sesuai
 import Chatbot from '../pages/user/Chatbot'; // Import komponen Chatbot
 import ChatbotIframe from '../pages/user/ChatbotComponen'; // Import komponen chatbot iframe
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 const HeaderUser = () => {
   const [isChatbotVisible, setIsChatbotVisible] = useState(false);
 
+  // Check if user is logged in
+  const token = localStorage.getItem('token');
+
   const handleChatbotToggle = () => {
-    setIsChatbotVisible(!isChatbotVisible); // Menyalakan/mematikan pop-up chatbot
+    if (!token) {
+      // Show SweetAlert2 if no token is found (user is not logged in)
+      Swal.fire({
+        title: 'Anda Belum Login',
+        text: 'Silahkan Login terlebih dahulu untuk mengakses chatbot.',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+      }).then(() => {
+        // Redirect user to login page after confirmation
+        window.location.href = '/login'; // Replace '/login' with your actual login route
+      });
+      return; // Prevent opening the chatbot if not logged in
+    }
+
+    setIsChatbotVisible(!isChatbotVisible); // Toggle chatbot visibility if logged in
   };
 
   return (
@@ -63,7 +81,7 @@ const HeaderUser = () => {
           {/* Menampilkan Chatbot atau Iframe tergantung kebutuhan */}
           {/* Gunakan ChatbotIframe untuk chatbot berbasis iframe */}
           <ChatbotIframe /> 
-          {/* Atau jika Anda lebih suka menampilkan Chatbot secara langsung */}
+          {/* Atau jika Anda lebih suka menampilkan Chatbot secara langsung */} 
           {/* <Chatbot /> */}
           <button className="close-chatbot" onClick={handleChatbotToggle}>X</button> {/* Tombol untuk menutup chatbot */}
         </div>

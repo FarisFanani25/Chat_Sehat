@@ -1,69 +1,101 @@
-/* ===== Buttons CSS ===== */
+/* ===== Styling untuk Navbar User ===== */
+.navbar-user {
+  background-color: var(--primary); /* Gunakan warna utama */
+  padding: 2px 0;
+  position: fixed; /* Navbar tetap di atas */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Agar di atas elemen lain */
+}
+
+.navbar-user .navbar-brand {
+  display: flex;
+  align-items: center;
+  color: var(--white) !important;
+}
+
+.navbar-user .navbar-brand img {
+  height: 70px; /* Tinggi logo */
+  margin-right: -5px; /* Jarak antara logo dan teks */
+}
+
+.navbar-user .navbar-nav .nav-item a {
+  color: var(--white);
+  font-weight: 500;
+  padding: 8px 15px;
+}
+
+.navbar-user .navbar-nav .nav-item a:hover {
+  color: var(--primary-dark);
+  background-color: var(--white);
+  border-radius: 5px;
+}
+
+.navbar-user .navbar-toggler {
+  border-color: var(--white);
+}
+
+.navbar-user .navbar-btn {
+  display: flex;
+  gap: 10px;
+}
+
+.navbar-user .navbar-btn:hover {
+  color: var(--primary);
+  background-color: var(--white);
+  border-radius: 5px;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--white);
+  margin: 0;
+}
+
+/* ===== Responsif untuk Navbar User ===== */
+@media (max-width: 768px) {
+  .navbar-user .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar-user .navbar-brand {
+    font-size: 20px;
+  }
+
+  .navbar-user .navbar-nav .nav-item a {
+    padding: 10px;
+    font-size: 18px;
+  }
+}
+
+/* ===== Styling Global (Opsional) ===== */
+.main-content {
+  margin-top: 56px; /* Sesuaikan dengan tinggi navbar */
+}
+
+.navbar-toggler-icon {
+  background-color: white;
+}
+
 .primary-btn {
-    background: var(--primary);
-    color: var(--white);
-    box-shadow: var(--shadow-2);
-    padding: 8px 16px;
-    border-radius: 5px;
-  }
-  .primary-btn-outline {
-    border: 2px solid var(--primary);
-    color: var(--primary);
-    padding: 6px 14px;
-    border-radius: 5px;
-    transition: all 0.3s ease-out;
-  }
-  .primary-btn-outline:hover {
-    background: var(--primary);
-    color: var(--white);
-  }
-  
-  /* ===== Navbar CSS ===== */
-  .navbar-one {
-    background-color: var(--primary);
-    padding: 2px 0;
-  }
-  .navbar-one .navbar-brand {
-    display: flex; /* Menggunakan flexbox */
-    align-items: center; /* Memusatkan vertikal */
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: var(--shadow-2);
+  padding: 8px 16px;
+  border-radius: 5px;
 }
 
-.navbar-one .navbar-brand img {
-    height: 70px; /* Atur tinggi logo */
-    margin-right: -5px; /* Jarak antara logo dan teks */
+.primary-btn-outline {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  padding: 6px 14px;
+  border-radius: 5px;
+  transition: all 0.3s ease-out;
 }
 
-  .navbar-one .navbar-nav .nav-item a {
-    color: var(--white);
-    font-weight: 500;
-    padding: 8px 15px;
-  }
-  .navbar-one .navbar-nav .nav-item a:hover {
-    color: var(--primary-dark);
-    background-color: var(--white);
-    border-radius: 5px;
-  }
-  .navbar-one .navbar-toggler {
-    border-color: var(--white);
-  }
-  .navbar-one .navbar-btn {
-    display: flex;
-    gap: 10px;
-  }
-
-  .navbar-one .navbar-btn:hover {
-    display: flex;
-    gap: 10px;
-    color: var(--primary);
-    background-color: var(--white);
-    border-radius: 5px;
-  }
-  
-  
-  .logo-text {
-    font-size: 18px; /* Ukuran teks */
-    font-weight: bold; /* Menebalkan teks */
-    color: var(--white); /* Warna teks */
-    margin: 0; /* Menghilangkan margin jika ada */
+.primary-btn-outline:hover {
+  background: var(--primary);
+  color: var(--white);
 }
-  

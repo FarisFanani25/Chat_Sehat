@@ -43,7 +43,7 @@ const Register = () => {
         confirmButtonText: "OK",
       }).then(() => {
         // Redirect ke halaman login setelah klik OK
-        navigate("/login");
+        navigate("/verify-token");
       });
     } catch (error) {
       console.error("Register failed:", error.response?.data?.message || error.message);

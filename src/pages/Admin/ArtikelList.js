@@ -1,343 +1,237 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import NavbarAdmin from "../../components/NavbarAdmin";
-import "./Artikelist.css";
+import { Modal, Button, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Swal from "sweetalert2";
-import EditArticleModal from "./EditArticleModal";
-import CreateArticleModal from "./CreateArticleModal";
+import Sidebar from "../../components/Sidebar";
+import { Container } from "react-bootstrap"
 
-const ArticlesPage = () => {
+const CrudArticles = () => {
   const [articles, setArticles] = useState([]);
-  const [error, setError] = useState("");
-  const [showCreateModal, setShowCreateModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [newArticle, setNewArticle] = useState({
+  const [showModal, setShowModal] = useState(false);
+  const [currentArticle, setCurrentArticle] = useState(null);
+  const [formData, setFormData] = useState({
     title: "",
     content: "",
+    role: "",
     author: "",
-    role: "berita",
     image: null,
   });
-  const [editArticle, setEditArticle] = useState(null);
-  const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:8000/api/articles", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        });
-        setArticles(response.data);
-
-        Swal.fire({
-          title: "Berhasil!",
-          text: "Artikel berhasil dimuat!",
-          icon: "success",
-          timer: 1500,
-          showConfirmButton: false,
-        });
-      } catch (err) {
-        console.error(err);
-        setError("Gagal memuat artikel. Silakan coba lagi nanti.");
-        Swal.fire({
-          title: "Gagal!",
-          text: "Tidak dapat memuat artikel!",
-          icon: "error",
-          timer: 1500,
-          showConfirmButton: false,
-        });
-      }
-    };
     fetchArticles();
   }, []);
 
-  const handleDelete = async (id) => {
-    Swal.fire({
-      title: "Hapus Artikel?",
-      text: "Apakah Anda yakin ingin menghapus artikel ini?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Ya, Hapus!",
-      cancelButtonText: "Batal",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          const token = localStorage.getItem("token");
-          await axios.delete(`http://localhost:8000/api/articles/${id}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          setArticles((prev) =>
-            prev.filter((article) => article.id_artikel !== id)
-          );
-          Swal.fire({
-            title: "Berhasil!",
-            text: "Artikel berhasil dihapus.",
-            icon: "success",
-            timer: 1500,
-            showConfirmButton: false,
-          });
-        } catch (err) {
-          console.error(err);
-          Swal.fire({
-            title: "Gagal!",
-            text: "Tidak dapat menghapus artikel.",
-            icon: "error",
-            timer: 1500,
-            showConfirmButton: false,
-          });
-        }
-      }
-    });
+  const fetchArticles = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/artikel", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setArticles(response.data);
+    } catch (error) {
+      Swal.fire("Error", "Gagal memuat artikel", "error");
+      console.error("Error fetching articles:", error);
+    }
   };
 
-  const handleAddArticle = async (e) => {
-    e.preventDefault();
-  
-    // Memeriksa format gambar
-    if (newArticle.image && !["image/jpeg", "image/png", "image/jpg", "image/gif"].includes(newArticle.image.type)) {
-      Swal.fire({
-        title: "Gagal!",
-        text: "File gambar harus berformat JPG, JPEG, PNG, atau GIF.",
-        icon: "error",
-        timer: 1500,
-        showConfirmButton: false,
-      });
-      return;
-    }
-  
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, image: e.target.files[0] });
+  };
+
+  const handleSubmit = async () => {
+    const form = new FormData();
+    form.append("title", formData.title);
+    form.append("content", formData.content);
+    form.append("role", formData.role);
+    form.append("author", formData.author);
+    if (formData.image) form.append("image", formData.image);
+
     try {
-      const token = localStorage.getItem("token");
-      const formData = new FormData();
-Object.keys(editArticle).forEach((key) => {
-  formData.append(key, editArticle[key]);
-});
-
-await axios.put(`http://localhost:8000/api/articles/${editArticle.id_artikel}`, formData, {
-  headers: {
-    "Content-Type": "multipart/form-data",
-  },
-});
-
-  
-      const response = await axios.post(
-        "http://localhost:8000/api/articles",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-  
-      setArticles((prev) => [...prev, response.data.article]);
-      setShowCreateModal(false);
-  
-      Swal.fire({
-        title: "Berhasil!",
-        text: "Artikel berhasil ditambahkan!",
-        icon: "success",
-        timer: 1500,
-        showConfirmButton: false,
-      });
-    } catch (err) {
-      console.error(err);
-      Swal.fire({
-        title: "Gagal!",
-        text: "Tidak dapat menambahkan artikel.",
-        icon: "error",
-        timer: 1500,
-        showConfirmButton: false,
-      });
+      if (currentArticle) {
+        // Update
+        await axios.post(
+          `http://localhost:8000/api/artikel/${currentArticle.id_artikel}`,
+          form,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        Swal.fire("Berhasil", "Artikel berhasil diperbarui", "success");
+      } else {
+        // Create
+        await axios.post("http://localhost:8000/api/artikel", form, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        Swal.fire("Berhasil", "Artikel berhasil ditambahkan", "success");
+      }
+      fetchArticles();
+      setShowModal(false);
+      setFormData({ title: "", content: "", role: "", author: "", image: null });
+      setCurrentArticle(null);
+    } catch (error) {
+      Swal.fire("Error", "Gagal menyimpan artikel", "error");
+      console.error("Error saving article:", error);
     }
-  };  
+  };
 
-  const handleUpdateArticle = async (e) => {
-    e.preventDefault();
+  const handleEdit = (article) => {
+    setCurrentArticle(article);
+    setFormData({
+      title: article.title,
+      content: article.content,
+      role: article.role,
+      author: article.author,
+      image: null,
+    });
+    setShowModal(true);
+  };
+
+  const handleDelete = async (id) => {
     try {
-      const token = localStorage.getItem("token");
-      const formData = new FormData();
-  
-      // Tambahkan semua field ke FormData
-      Object.entries(editArticle).forEach(([key, value]) => {
-        if (key === "image" && value instanceof File) {
-          formData.append(key, value); // Upload file jika ada
-        } else {
-          formData.append(key, value);
-        }
+      await axios.delete(`http://localhost:8000/api/artikel/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
       });
-  
-      // Kirim request menggunakan metode PUT
-      const response = await axios.put(
-        `http://localhost:8000/api/articles/${editArticle.id_artikel}`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-  
-      setArticles((prev) =>
-        prev.map((item) =>
-          item.id_artikel === response.data.article.id_artikel
-            ? response.data.article
-            : item
-        )
-      );
-  
-      setShowEditModal(false);
-      setEditArticle(null);
-  
-      Swal.fire({
-        title: "Berhasil!",
-        text: "Artikel berhasil diperbarui!",
-        icon: "success",
-        timer: 1500,
-        showConfirmButton: false,
-      });
-    } catch (err) {
-      console.error(err);
-      Swal.fire({
-        title: "Gagal!",
-        text: "Tidak dapat memperbarui artikel.",
-        icon: "error",
-        timer: 1500,
-        showConfirmButton: false,
-      });
+      Swal.fire("Berhasil", "Artikel berhasil dihapus", "success");
+      fetchArticles();
+    } catch (error) {
+      Swal.fire("Error", "Gagal menghapus artikel", "error");
+      console.error("Error deleting article:", error);
     }
-  };  
+  };
 
   return (
-    <div>
-      <NavbarAdmin />
-      <div className="container-fluid">
-        <div className="row">
-          <nav className="col-md-2 d-none d-md-block bg-light sidebar">
-            <div className="sidebar-sticky">
-              <ul className="nav flex-column">
-                <li className="nav-item">
-                  <Link className="nav-link" to="/DashboardAdmin">
-                    Dashboard
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link active" to="/articles">
-                    Artikel
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/manage-users">
-                    Daftar User
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/settings">
-                    Settings
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </nav>
-
-          <main className="main-content col-md-9 ml-sm-auto col-lg-10 px-4">
-            <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h1 className="h2">Manajemen Artikel</h1>
-              <button
-                className="btn btn-primary"
-                onClick={() => setShowCreateModal(true)}
-              >
-                Tambah Artikel
-              </button>
-            </div>
-
-            {error && <div className="alert alert-danger">{error}</div>}
-
-            <table className="table table-bordered">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Judul</th>
-                  <th>Konten</th>
-                  <th>Penulis</th>
-                  <th>Gambar</th>
-                  <th>Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                {articles.map((article, index) => (
-                  <tr key={article.id_artikel}>
-                    <td>{index + 1}</td>
-                    <td>{article.title}</td>
-                    <td>{article.content}</td>
-                    <td>{article.author}</td>
-                    <td>
-                      {article.image ? (
-                        <img
-                          src={`http://localhost:8000/storage/${article.image}`}
-                          alt="Artikel"
-                          style={{ width: "100px", height: "auto" }}
-                        />
-                      ) : (
+    <div style={{ display: "flex" }}>
+      <Sidebar /> {/* Sidebar di sebelah kiri */}
+      <Container style={{ marginLeft: "250px", padding: "20px" }}>
+      <h1>DATA Artikel</h1>
+      <Button variant="primary" onClick={() => setShowModal(true)}>
+        Tambah Artikel
+      </Button>
+      <table className="table mt-3">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Role</th>
+            <th>Author</th>
+            <th>Image</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {articles.map((article, index) => (
+            <tr key={article.id_artikel}>
+              <td>{index + 1}</td>
+              <td>{article.title}</td>
+              <td>{article.role}</td>
+              <td>{article.author}</td>
+              <td>
+                {article.image ? (
+                  <img
+                    src={`http://localhost:8000/storage/${article.image}`}
+                      alt="Artikel"
+                      style={{ width: "100px", height: "auto" }}
+                     />
+                    ) : (
                         "Tidak ada gambar"
-                      )}
-                    </td>
-                    <td>
-                      <button
-                        className="btn btn-warning me-2"
-                        onClick={() => {
-                          setEditArticle(article);
-                          setShowEditModal(true);
-                        }}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => handleDelete(article.id_artikel)}
-                      >
-                        Hapus
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </main>
-        </div>
-      </div>
+                   )}
+              </td>
+              <td>
+                <Button
+                  variant="warning"
+                  onClick={() => handleEdit(article)}
+                  className="me-2"
+                >
+                  Edit
+                </Button>
+                <Button
+                  variant="danger"
+                  onClick={() => handleDelete(article.id_artikel)}
+                >
+                  Delete
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-      {/* Create Modal */}
-      <CreateArticleModal
-  showModal={showCreateModal}
-  handleClose={() => setShowCreateModal(false)}
-  setArticles={setArticles}
-  setShowCreateModal={setShowCreateModal}
-/>
-
-      {/* Edit Modal */}
-      {editArticle && (
-        <EditArticleModal
-          showModal={showEditModal}
-          handleClose={() => setShowEditModal(false)}
-          handleSubmit={handleUpdateArticle}
-          editArticle={editArticle}
-          handleInputChange={(e) =>
-            setEditArticle({ ...editArticle, [e.target.name]: e.target.value })
-          }
-        />
-      )}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{currentArticle ? "Edit Artikel" : "Tambah Artikel"}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="text"
+                name="title"
+                value={formData.title}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Content</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                name="content"
+                value={formData.content}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Role</Form.Label>
+              <Form.Select
+                name="role"
+                value={formData.role}
+                onChange={handleInputChange}
+              >
+                <option value="">Pilih Role</option>
+                <option value="berita">Berita</option>
+                <option value="jurnal">Jurnal</option>
+                <option value="majalah">Majalah</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Author</Form.Label>
+              <Form.Control
+                type="text"
+                name="author"
+                value={formData.author}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Image</Form.Label>
+              <Form.Control
+                type="file"
+                name="image"
+                onChange={handleFileChange}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleSubmit}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      </Container>
     </div>
   );
 };
 
-export default ArticlesPage;
+export default CrudArticles;

@@ -15,39 +15,49 @@ const SignIn = () => {
     e.preventDefault();
 
     try {
-      // Kirim data login ke API
-      const response = await axios.post("http://127.0.0.1:8000/api/login", {
-        email,
-        password,
-      });
+        const response = await axios.post("http://127.0.0.1:8000/api/login", {
+            email,
+            password,
+        });
 
-      const { access_token, user } = response.data;
+        const { access_token, user } = response.data;
 
-      // Simpan token dan data user di localStorage
-      localStorage.setItem("token", access_token);
-      localStorage.setItem("user", JSON.stringify(user));
+        // Simpan token dan data user di localStorage
+        localStorage.setItem("token", access_token);
+        localStorage.setItem("user", JSON.stringify(user));
 
-      // Tampilkan SweetAlert2 dengan nama user
-      Swal.fire({
-        title: `Selamat datang, ${user.name}!`,
-        text: "Login berhasil. Anda akan diarahkan ke halaman dashboard.",
-        icon: "success",
-        confirmButtonText: "OK",
-      }).then(() => {
-        // Arahkan ke halaman sesuai role
-        if (user.role === "admin") {
-          navigate("/DashboardAdmin");
-        } else {
-          navigate("/");
-        }
-      });
+        // Tampilkan SweetAlert2 dengan nama user
+        Swal.fire({
+            title: `Selamat datang, ${user.name}!`,
+            text: "Login berhasil. Anda akan diarahkan ke halaman dashboard.",
+            icon: "success",
+            confirmButtonText: "OK",
+        }).then(() => {
+            if (user.role === "admin") {
+                navigate("/DashboardAdmin");
+            } else {
+                navigate("/");
+            }
+        });
     } catch (error) {
-      // Tangkap error dan tampilkan pesan kesalahan
-      setError(
-        error.response?.data?.message || "Login gagal. Silakan coba lagi."
-      );
+        if (error.response?.status === 403) {
+            // Jika email belum diverifikasi
+            Swal.fire({
+                title: "Verifikasi Email Dibutuhkan!",
+                text: "Email Anda belum diverifikasi. Silakan cek email untuk kode verifikasi.",
+                icon: "warning",
+                confirmButtonText: "OK",
+            }).then(() => {
+                navigate("/verify-token", { state: { email } }); // Redirect ke halaman verifikasi
+            });
+        } else {
+            // Error umum
+            setError(
+                error.response?.data?.message || "Login gagal. Silakan coba lagi."
+            );
+        }
     }
-  };
+};
 
   return (
     <section className="signin-area signin-one">
